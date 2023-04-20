@@ -12,10 +12,7 @@ public class SelectRequest {
 	private Integer classid;
 	
 	private String classname;
-//	@JsonProperty("student_info")
-//	private List<StudentSystem> studentSystems;
-//	@JsonProperty("class_info")
-//	private List<ClassSystem> classSystems;
+
 
 	public Integer getStudentid() {
 		return studentid;
@@ -41,21 +38,5 @@ public class SelectRequest {
 		this.classname = classname;
 	}
 
-//	public List<StudentSystem> getStudentSystems() {
-//		return studentSystems;
-//	}
-//
-//	public void setStudentSystems(List<StudentSystem> studentSystems) {
-//		this.studentSystems = studentSystems;
-//	}
-//
-//	public List<ClassSystem> getClassSystems() {
-//		return classSystems;
-//	}
-//
-//	public void setClassSystems(List<ClassSystem> classSystems) {
-//		this.classSystems = classSystems;
-//	}
-//	
 	
 }

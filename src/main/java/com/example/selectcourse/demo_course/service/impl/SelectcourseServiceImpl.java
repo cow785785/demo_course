@@ -33,8 +33,6 @@ public class SelectcourseServiceImpl implements SelectcourseService {
 
 	@Override
 	public SelectResponse selectclass(SelectRequest selectRequest) {
-//		Integer studentId = selectRequest.getStudentid();
-//	    Integer classId = selectRequest.getClassid();
 
 	    // 檢查學生與課程是否存在
 	    Optional<StudentSystem> optionalStudent = studentDao.findById(selectRequest.getStudentid());
@@ -43,8 +41,6 @@ public class SelectcourseServiceImpl implements SelectcourseService {
 	    if (optionalStudent.isEmpty() || optionalClass.isEmpty()) {
 	        return new SelectResponse(selectRequest.getStudentid(), selectRequest.getClassid(), "學生或課程不存在");
 	    }
-//	    StudentSystem student = optionalStudent.get();
-//	    ClassSystem classSystem = optionalClass.get();
 
 	    // 檢查是否選修過這門課程
 	    Optional<Selectcourse> optionalSelectcourse = selectcourseDao.findByStudentidAndClassid(selectRequest.getStudentid(), selectRequest.getClassid());
