@@ -3,9 +3,11 @@ package com.example.selectcourse.demo_course.vo;
 import java.util.List;
 
 import com.example.selectcourse.demo_course.entity.ClassSystem;
+import com.example.selectcourse.demo_course.entity.Selectcourse;
 import com.example.selectcourse.demo_course.entity.StudentSystem;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SelectResponse {
 	private Integer studentid;
 
@@ -13,10 +15,15 @@ public class SelectResponse {
 	
 	private String classname;
 	
-	@JsonProperty("student_info")
-	private List<StudentSystem> studentSystems;
-	@JsonProperty("class_info")
-	private List<ClassSystem> classSystems;
+	@JsonProperty("select_info")
+	private Selectcourse selectcourse;
+	@JsonProperty("select_info_list")
+	private List<Selectcourse> selectcoursesList;
+	
+//	@JsonProperty("student_info")
+//	private List<StudentSystem> studentSystems;
+//	@JsonProperty("class_info")
+//	private List<ClassSystem> classSystems;
 	
 	private String message;
 
@@ -63,15 +70,48 @@ public class SelectResponse {
 	
 	
 
-	public SelectResponse(List<StudentSystem> studentSystems, String message) {
-		this.studentSystems = studentSystems;
+//	public SelectResponse(List<StudentSystem> studentSystems, String message) {
+//		this.studentSystems = studentSystems;
+//		this.message = message;
+//	}
+//
+//	
+//	public SelectResponse(List<ClassSystem> classSystems, Integer classid, String message) {
+//		this.classSystems = classSystems;
+//		this.classid = classid;
+//		this.message = message;
+//	}
+
+
+
+	public SelectResponse(Integer studentid, Integer classid, String classname, Selectcourse selectcourse,
+			List<Selectcourse> selectcoursesList, String message) {
+		this.studentid = studentid;
+		this.classid = classid;
+		this.classname = classname;
+		this.selectcourse = selectcourse;
+		this.selectcoursesList = selectcoursesList;
 		this.message = message;
 	}
 
-	
-	public SelectResponse(List<ClassSystem> classSystems, Integer classid, String message) {
-		this.classSystems = classSystems;
-		this.classid = classid;
+
+
+	public SelectResponse(Selectcourse selectcourse, List<Selectcourse> selectcoursesList) {
+		this.selectcourse = selectcourse;
+		this.selectcoursesList = selectcoursesList;
+	}
+
+
+
+	public SelectResponse(List<Selectcourse> selectcoursesList, String message) {
+		this.selectcoursesList = selectcoursesList;
+		this.message = message;
+	}
+
+
+
+	public SelectResponse(Selectcourse selectcourse, String message) {
+		this.selectcourse = selectcourse;
 		this.message = message;
 	}
 
@@ -119,27 +159,51 @@ public class SelectResponse {
 
 
 
-	public List<StudentSystem> getStudentSystems() {
-		return studentSystems;
+	public Selectcourse getSelectcourse() {
+		return selectcourse;
 	}
 
 
 
-	public void setStudentSystems(List<StudentSystem> studentSystems) {
-		this.studentSystems = studentSystems;
+	public void setSelectcourse(Selectcourse selectcourse) {
+		this.selectcourse = selectcourse;
 	}
 
 
 
-	public List<ClassSystem> getClassSystems() {
-		return classSystems;
+	public List<Selectcourse> getSelectcoursesList() {
+		return selectcoursesList;
 	}
 
 
 
-	public void setClassSystems(List<ClassSystem> classSystems) {
-		this.classSystems = classSystems;
+	public void setSelectcoursesList(List<Selectcourse> selectcoursesList) {
+		this.selectcoursesList = selectcoursesList;
 	}
-	
+
+
+
+//	public List<StudentSystem> getStudentSystems() {
+//		return studentSystems;
+//	}
+//
+//
+//
+//	public void setStudentSystems(List<StudentSystem> studentSystems) {
+//		this.studentSystems = studentSystems;
+//	}
+//
+//
+//
+//	public List<ClassSystem> getClassSystems() {
+//		return classSystems;
+//	}
+//
+//
+//
+//	public void setClassSystems(List<ClassSystem> classSystems) {
+//		this.classSystems = classSystems;
+//	}
+//	
 	
 }

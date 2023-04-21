@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.springframework.util.StringUtils;
 
 import com.example.selectcourse.demo_course.entity.ClassSystem;
 import com.example.selectcourse.demo_course.entity.Selectcourse;
@@ -33,7 +33,13 @@ public class SelectcourseServiceImpl implements SelectcourseService {
 
 	@Override
 	public SelectResponse selectclass(SelectRequest selectRequest) {
-
+		List<Selectcourse> list=selectRequest.getSelectcoursesList();
+	    for(Selectcourse listselect:list) {
+	    	if(listselect.getClassid()==null || !StringUtils.hasText(listselect.getClassname()) || listselect.getClassid()==null) {
+	    		return new SelectResponse(listselect,"失敗");
+	    	}
+	    	
+	    }
 	    // 檢查學生與課程是否存在
 	    Optional<StudentSystem> optionalStudent = studentDao.findById(selectRequest.getStudentid());
 	    Optional<ClassSystem> optionalClass = classDao.findById(selectRequest.getClassid());
@@ -118,10 +124,13 @@ public class SelectcourseServiceImpl implements SelectcourseService {
 //				return new SelectResponse(classList,selectRequest.getClassid(),"失敗!!,格式錯誤");
 //			}
 //	    }	    
-	    Selectcourse selectcourse = new Selectcourse(selectRequest.getStudentid(), selectRequest.getClassid(), selectRequest.getClassname());
-	    selectcourseDao.save(selectcourse);
-
-	    return new SelectResponse(selectRequest.getStudentid(), selectRequest.getClassid(), "選課成功");
+	    
+	    selectcourseDao.saveAll(list);
+	    return new SelectResponse(list,"失敗");
+//	    Selectcourse selectcourse = new Selectcourse(selectRequest.getStudentid(), selectRequest.getClassid(), selectRequest.getClassname());
+//	    selectcourseDao.save(selectcourse);
+//
+//	    return new SelectResponse(selectRequest.getStudentid(), selectRequest.getClassid(), "選課成功");
 	}
 
 	@Override
